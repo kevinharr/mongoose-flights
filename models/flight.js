@@ -6,7 +6,16 @@ const flightSchema = new Schema({
   airline: String,
   airport: String,
   flightNo: Number,
-  departs: Date,
+  departs: {
+    type: Date,
+    default: function() {
+        const today = new Date();
+        console.log(today)
+        const oneYearLater = today.getFullYear() + 1
+        console.log(oneYearLater);
+        today
+    }
+  }
 }, {
     timestamps: true
 })
