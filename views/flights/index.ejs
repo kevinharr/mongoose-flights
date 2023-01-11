@@ -4,27 +4,26 @@
 
 <main>
   <h1>Flight List</h1>
-  <table>
+  <table id="list">
     <thead>
       <tr>
         <th>Airline</th>
         <th>Airport</th>
-        <th>Flight Number</th>
-        <th>Departs</th>
+        <th></th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
-      <% flights.forEach(flight => { %>
+      <% flights.forEach((flight) => { %>
         <tr>
           <td><%= flight.airline %></td>
           <td><%= flight.airport %></td>
-          <td><%= flight.flightNumber %></td>
-          <td><%= flight.departs.toISOString().slice(0, 16) %></td>
           <td><a href="/flights/<%=flight._id %>">DETAILS</a></td>
           <td>
             <form
               action="/flights/<%=flight._id %>?_method=DELETE"
               method="POST"
+            >
               <button>X</button>
           </form>
           </td>
