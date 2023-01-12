@@ -60,9 +60,9 @@ function index(req, res) {
   function edit(req, res) {
     Flight.findById(req.params.id)
     .then(flight => {
-        res.render("/flights/edit", {
+        res.render("flights/edit", {
+            title: "Edit Flight",
             flight,
-            title: "Edit Flight"
         })
     })
     .catch(err => {
@@ -72,6 +72,12 @@ function index(req, res) {
   }
 
   function update(req, res) {
+    console.log("this is req.body before running loop", req.body)
+    for (const key in req.body) {
+      // Key can be "title", "releaseYear", etc.
+       if(req.body[key] === "") delete req.body[key]
+     // req.body.releaseYear is "" so we delete it.
+    }
     Flight.findByIdAndUpdate(req.params.id, req.body, {new: true})
     .then(flight => {
         res.redirect(`/flights/${flight._id}`)

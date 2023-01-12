@@ -1,6 +1,13 @@
 import mongoose from 'mongoose'
 
 const Schema = mongoose.Schema
+
+const reviewSchema = new Schema({
+  seat: {type: String, match: /[A-F][1-9]\d?/},
+  price: {type: Number, min: 0}
+}, {
+  timestamps: true
+})
 	
 const flightSchema = new Schema({
   airline: {
@@ -9,17 +16,20 @@ const flightSchema = new Schema({
   },
   airport: {
     type: String,
-    enum: ["AUS", "DFW", "DEN", "LAX", "SAN"]
+    enum: ["AUS", "DFW", "DEN", "LAX", "SAN"],
+    default: "DEN"
   },
-  flightNumber: { type: Number, min: 10, max: 9999, default: 9999},
+  flightNumber: { type: Number, min: 10, max: 9999},
   departs: { 
     type: Date,
-    required: true, 
-  },
-}, {
+    default: function() {
+      return new Date().getFullYear()
+    }
+  }} , {
     timestamps: true
 })
 	
+
 // Compile the schema into a model and export it
 const Flight = mongoose.model('Flight', flightSchema)
 
