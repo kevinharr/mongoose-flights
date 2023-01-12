@@ -15,6 +15,8 @@ router.get('/:id', flightsCtrl.show)
 
 router.delete('/:id', flightsCtrl.delete)
 
+router.post('/:id/tickets', flightsCtrl.createTicket)
+
 router.get('/:id/edit', flightsCtrl.edit)
 
 router.put('/:id', flightsCtrl.update)

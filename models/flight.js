@@ -2,7 +2,7 @@ import mongoose from 'mongoose'
 
 const Schema = mongoose.Schema
 
-const reviewSchema = new Schema({
+const ticketSchema = new Schema({
   seat: {type: String, match: /[A-F][1-9]\d?/},
   price: {type: Number, min: 0}
 }, {
@@ -20,6 +20,7 @@ const flightSchema = new Schema({
     default: "DEN"
   },
   flightNumber: { type: Number, min: 10, max: 9999},
+  tickets: [ticketSchema],
   departs: { 
     type: Date,
     default: function() {

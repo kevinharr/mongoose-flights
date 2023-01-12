@@ -88,6 +88,25 @@ function index(req, res) {
     })
   }
 
+  function createTicket(req, res) {
+    Flight.findById(req.params.id)
+    .then(flight => {
+      flight.tickets.push(req.body)
+      ticket.save()
+      .then(() => {
+        res.redirect(`/flights/${flight._id}`)
+      })
+      .catch(err => {
+        console.log(err)
+        res.redirect('/')
+      })
+    })
+    .catch(err => {
+      console.log(err)
+      res.redirect('/')
+    })
+  }
+
 export {
     newFlight as new,
     create,
@@ -96,4 +115,5 @@ export {
     deleteFlight as delete,
     edit,
     update,
+    createTicket,
 }
