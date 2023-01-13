@@ -42,10 +42,10 @@ function index(req, res) {
     .then(flight => {
       Meal.find({_id: {$nin: flight.meals}})
       .then(meals => {
-      res.render('flights/show', {
-        title: "Flights Detail",
-        flight: flight,  
-        meals,   
+        res.render('flights/show', {
+          title: "Flights Detail",
+          flight: flight,  
+          meals,   
       })
     })
     .catch(err => {
