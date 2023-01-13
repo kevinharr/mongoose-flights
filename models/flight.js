@@ -21,17 +21,20 @@ const flightSchema = new Schema({
   },
   flightNumber: { type: Number, min: 10, max: 9999},
   tickets: [ticketSchema],
+  meals: [{type: Schema.Types.ObjectId, ref: 'Meal'}],
   departs: { 
     type: Date,
-    default: function() {
-      return new Date().getFullYear()
+    default: function () {
+      const date = new Date();
+      date.setFullYear(date.getFullYear() + 1);
+      return date;
     }
   }} , {
     timestamps: true
 })
 	
 
-// Compile the schema into a model and export it
+
 const Flight = mongoose.model('Flight', flightSchema)
 
 export {
