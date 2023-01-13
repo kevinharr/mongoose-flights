@@ -103,7 +103,7 @@ function index(req, res) {
     Flight.findById(req.params.id)
     .then(flight => {
       flight.tickets.push(req.body)
-      ticket.save()
+      flight.save()
       .then(() => {
         res.redirect(`/flights/${flight._id}`)
       })
