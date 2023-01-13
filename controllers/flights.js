@@ -85,7 +85,6 @@ function index(req, res) {
   }
 
   function update(req, res) {
-    console.log("this is req.body before running loop", req.body)
     for (const key in req.body) {
        if(req.body[key] === "") delete req.body[key]
     }
@@ -122,6 +121,7 @@ function index(req, res) {
     Flight.findById(req.params.id)
     .then(flight => {
       flight.meals.push(req.body.mealId)
+      console.log("showing flight.meals", flight.meals)
       flight.save()
       .then(() => {
         res.redirect(`/flights/${flight._id}`)
