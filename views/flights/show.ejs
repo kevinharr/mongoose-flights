@@ -17,6 +17,8 @@
     <div><%= flight.flightNumber %></div>
     <div>Departs: </div>
     <div><%= flight.departs.toISOString().slice(0, 16) %></div>
+    <br>
+    <br>
     <div>Meals</div>
     <ul>
       <% flight.meals.forEach(meal => { %>
@@ -28,7 +30,7 @@
     <form id="add-meal" action="/flights/<%= flight._id %>/meals" method="POST">
       <select name="mealId">
       <% meals.forEach(meal => { %>
-        <option value="<% meal._id %>"><%= meal.name %></option>
+        <option value="<%= meal._id %>"><%= meal.name %></option>
         <% }) %>
       </select>
       <button type="submit">Add Meal to Flight</button>

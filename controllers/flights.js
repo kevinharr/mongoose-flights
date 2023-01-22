@@ -118,6 +118,9 @@ function index(req, res) {
   }
 
   function addToMeals(req, res) {
+    console.log("inside add meals")
+    console.log("flight id", req.params.id)
+    console.log("body", req.body)
     Flight.findById(req.params.id)
     .then(flight => {
       flight.meals.push(req.body.mealId)
